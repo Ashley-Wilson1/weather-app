@@ -9,14 +9,20 @@
     <link rel="stylesheet" href="{% static 'style.css'%}" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet" />
   </head>
-  <body>
+  <body
+    {% if exception_occurred %}
+      style="background-image: url('https://images.pexels.com/photos/3008509/pexels-photo-3008509.jpeg?auto=compress&cs=tinysrgb&w=1600')" 
+    {% else %}
+      style="background-image: url('{{ image_url }}');"
+    {% endif %}
+  >
     <div class="container">
       <h1>Weather App</h1>
 
       <form method="POST">
         {% csrf_token %}
         <input type="text" name="city" placeholder="Enter city" />
-        <button type="submit">Search</button>
+        <button type="submit" class="btn">Search</button>
       </form>
 
       <div class="weather">

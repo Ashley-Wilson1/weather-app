@@ -17,17 +17,18 @@ def home(request):
     API_KEY = 'AIzaSyBip8jkFF9W9AMezbWmGfeqh14dw7sGEAs'
     SEARCH_ENGINE_ID = 'b594445ec513343d1'
 
-    query = city + "1920x1080"
-    page=1
-    start = (page-1)*10+1
-    searchType ='image'
-    city_url = f"https://www.googleapis.com/customsearch/v1?key={API_KEY}&cx={SEARCH_ENGINE_ID}&q={query}&start={start}&searchType={searchType}&imgSize=xlarge"
-
-    data = request.get(city_url).json()
-    count= 1
-    search_items = data.get("items")
-    image_url = search_items[1]['link']
+    
     try:
+        query = city + " 1920x1080"
+        page = 1
+        start = (page - 1) * 10 + 1
+        searchType = 'image'
+        city_url = f"https://www.googleapis.com/customsearch/v1?key={API_KEY}&cx={SEARCH_ENGINE_ID}&q={query}&start={start}&searchType={searchType}&imgSize=xlarge"
+
+        data = requests.get(city_url).json()
+        count = 1
+        search_items = data.get("items")
+        image_url = search_items[1]['link']
         data = requests.get(url,PARAMS).json()
 
         description = data['weather'][0]['description']
@@ -35,8 +36,10 @@ def home(request):
         temp = data['main']['temp']
 
         day = datetime.date.today
+        print(city_url)
+        print(image_url)
         
-        return render(request,'index.html',{'description':description,'icon':icon,'temp':temp,'day':day,'city':city, 'exception_occurred':False, 'image_url':image_url})
+        return render(request,'index.html' , {'description':description , 'icon':icon ,'temp':temp , 'day':day , 'city':city , 'exception_occurred':False ,'image_url':image_url})    
     except:
         exception_occurred = True
         messages.error(request,'entered data is not availible to API')
