@@ -36,5 +36,13 @@
         </div>
       </div>
     </div>
+
+    {% if exception_occurred %}
+    <script>
+      window.onload = function () {
+        alert("City information is not availible to our API");
+      };
+    </script>
+    {% endif %}
   </body>
 </html>
