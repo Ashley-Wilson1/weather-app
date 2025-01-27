@@ -38,6 +38,9 @@ This is a weather application built using **Django**. The app fetches weather in
 
 ---
 
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/710de04f-dcb3-45b1-af8c-5d4f4d749a0e" />
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/fbd5070d-6093-4821-a709-aa2edee019b9" />
+
 
 
 
